@@ -1,0 +1,28 @@
+<%= form_for @recipe, url: {action: "create"} do |f| %>
+
+  <%= f.label :title, "Título" %>
+  <%= f.text_field :title, :required => true %>
+
+  <%= f.label :recipe_type, "Tipo da Receita" %>
+  <%= f.text_field :recipe_type, :required => true %>
+
+  <%= f.label :cuisine, "Cozinha" %>
+  <%= f.text_field :cuisine, :required => true %>
+
+  <%= f.label :portion, "Quantas pessoas serve" %>
+  <%= f.number_field :portion %>
+
+  <%= f.label :cook_time, "Tempo de Preparo" %>
+  <%= f.number_field :cook_time, placeholder: "minutos" %>
+
+  <%= f.label :difficulty, "Dificuldade" %>
+  <%= f.text_field :difficulty %>
+ 
+  <%= f.label :ingredients, "Ingredientes" %>
+  <%= f.text_area :ingredients, :required => true %>
+
+  <%= f.label :method, "Como Preparar" %>
+  <%= f.text_area :method, :required => true %>
+
+  <%= f.submit "Enviar" %>
+<% end %>
