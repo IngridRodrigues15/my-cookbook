@@ -13,7 +13,7 @@ class CuisineController < ApplicationController
     if @cuisine.save
       redirect_to cuisine_path(@cuisine.id)
     else
-      render '_error'
+      render 'new'
     end
   end
 end

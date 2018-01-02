@@ -1,5 +1,11 @@
 <%= form_for @recipe, url: {action: "create"} do |f| %>
 
+  <% if @recipe.errors.any? %>
+    <% @recipe.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  <% end %>
+
   <%= f.label :title, "Título" %>
   <%= f.text_field :title, :required => true %>
 
@@ -13,7 +19,7 @@
   <%= f.number_field :portion %>
 
   <%= f.label :cook_time, "Tempo de Preparo" %>
-  <%= f.number_field :cook_time, placeholder: "minutos" %>
+  <%= f.number_field :cook_time, :required => true, placeholder: "minutos" %>
 
   <%= f.label :difficulty, "Dificuldade" %>
   <%= f.text_field :difficulty, :required => true %>
