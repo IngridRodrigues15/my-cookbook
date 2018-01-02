@@ -6,8 +6,8 @@
   <%= f.label :recipe_type, "Tipo da Receita" %>
   <%= f.text_field :recipe_type, :required => true %>
 
-  <%= f.label :cuisine, "Cozinha" %>
-  <%= f.text_field :cuisine, :required => true %>
+  <%= f.label :cuisine_id, "Cozinha" %>
+  <%= f.collection_select(:cuisine_id, Cuisine.all, :id, :name) %>
 
   <%= f.label :portion, "Quantas pessoas serve" %>
   <%= f.number_field :portion %>
@@ -16,7 +16,7 @@
   <%= f.number_field :cook_time, placeholder: "minutos" %>
 
   <%= f.label :difficulty, "Dificuldade" %>
-  <%= f.text_field :difficulty %>
+  <%= f.text_field :difficulty, :required => true %>
  
   <%= f.label :ingredients, "Ingredientes" %>
   <%= f.text_area :ingredients, :required => true %>
