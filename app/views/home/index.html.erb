@@ -1,6 +1,15 @@
 <h1>CookBook</h1>
 <p>Bem-vindo ao maior livro de receitas online</p>
 
+<h3>Cozinha</h3>
+<aside>
+	<% @cuisines.each do |cuisine| %>
+		<li>
+			<%= link_to cuisine.name, cuisine_path(cuisine.id) %>
+		</li>
+	<% end %>
+</aside>
+
 <% @recipes.each do |recipe| %>
 	<h1>
 		<%= link_to recipe.title, recipe_path(recipe.id) %>
