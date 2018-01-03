@@ -1,0 +1,21 @@
+<%= render "home/header" %>
+
+<h1> Resultado da busca por:  <%= @search_term %> </h1>
+
+<% if @recipes.empty? %>
+    Nenhuma receita encontrada
+<% end %>
+
+<% @recipes.each do |recipe| %>
+  <h1>
+    <%= link_to recipe.title, recipe_path(recipe.id) %>
+  </h1>
+  <ul>
+    <li>Tipo: <%= recipe.recipe_type %></li>
+    <li>Cozinha: <%= recipe.cuisine %></li>
+    <li>Dificuldade: <%= recipe.difficulty %></li>
+    <li>Tempo de preparo: <%= recipe.cook_time %> minutos</li>
+  </ul>
+<% end %>
+
+<%= render "home/footer" %>

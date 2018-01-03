@@ -6,7 +6,15 @@
         <p>Bem-vindo ao maior livro de receitas online</p>
       </div>
 
-      <div class="col-md-6 col-sm-12">
+      <div class="col-md-2">
+        <%= form_tag("/search", method: "get") do %>
+          <%= label_tag(:q, "Busca:") %>
+          <%= text_field_tag(:q) %>
+          <%= submit_tag("Buscar") %>
+        <% end %>
+      </div>
+
+      <div class="col-md-4 col-sm-12">
         <nav class="navbar navbar-default">
            <div class="collapse navbar-collapse" id="">
               <ul class="nav navbar-nav">

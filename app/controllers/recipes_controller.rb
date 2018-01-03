@@ -31,6 +31,11 @@ class RecipesController < ApplicationController
     end
   end
 
+  def search
+    @search_term = params[:q]
+    @recipes = Recipe.where(title: @search_term)
+  end
+
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
