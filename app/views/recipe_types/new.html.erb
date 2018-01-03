@@ -1,0 +1,13 @@
+<%= form_for @recipe_type, url: {action: "create"} do |f| %>
+  
+  <% if @recipe_type.errors.any? %>
+    <% @recipe_type.errors.full_messages.each do |msg| %>
+      <p><%= msg %></p>
+    <% end %>
+  <% end %>
+
+  <%= f.label :name, "Nome" %>
+  <%= f.text_field :name, :required => true %>
+
+  <%= f.submit "Enviar" %>
+<% end %>
