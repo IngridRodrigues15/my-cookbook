@@ -1,15 +1,25 @@
-<h1><%= @recipe_type.name %></h1>
+<%= render "home/header" %>
 
-<% if @recipes.empty? %>
-    Nenhuma receita encontrada para este tipo de receitas
-<% end %>
+<div class="container">
+  <div class="row">
+      <div class="col-md-8 col-sm-12 recipes-list">
+        <h1>Receitas filtradas por tipo: <%= @recipe_type.name %></h1>
 
-<% @recipes.each do |recipe| %>
-    <h1><%= recipe.title %></h1>
-    <ul>
-        <li><%= recipe.recipe_type %></li>
-        <li><%= recipe.cuisine %></li>
-        <li><%= recipe.difficulty %></li>
-        <li><%= recipe.cook_time %> minutos</li>
-    </ul>
-<% end %>
+        <% if @recipes.empty? %>
+            Nenhuma receita encontrada para este tipo de receitas
+        <% end %>
+
+        <% @recipes.each do |recipe| %>
+          <h1><%= link_to recipe.title, recipe_path(recipe.id) %></h1>
+          <ul>
+              <li>Tipo: <%= recipe.recipe_type %></li>
+              <li>Cozinha: <%= recipe.cuisine %></li>
+              <li>Deficuldade: <%= recipe.difficulty %></li>
+              <li>Tempo de preparo: <%= recipe.cook_time %> minutos</li>
+          </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render "home/footer" %>

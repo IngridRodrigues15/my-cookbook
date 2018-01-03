@@ -1,15 +1,36 @@
-<h1><%= @recipe.title %></h1>
+<%= render "home/header" %>
 
-<h3>Detalhes</h3>
-<p><%= @recipe.recipe_type %></p>
-<p><%= @recipe.cuisine %></p>
-<p><%= @recipe.difficulty %></p>
-<p><%= @recipe.cook_time %> minutos</p>
+<div class="container">
+  <div class="row">
+    <%= render "home/filter" %>
+    <div class="row">
+      <div class="col-md-4 col-sm-12">
+        <h1><%= @recipe.title %></h1>
 
-<h3>Ingredientes</h3>
-<p><%= @recipe.ingredients %></p>
+        <h3>Detalhes</h3>
+        <p>Tipo: <%= @recipe.recipe_type %></p>
+        <p>Cozinha: <%= @recipe.cuisine %></p>
+        <p>Serve: <%= @recipe.portion %> pessoas</p>
+        <p>Tempo de preparo: <%= @recipe.cook_time %> minutos</p>
+        <p>Dificuldade: <%= @recipe.difficulty %></p>
+      </div>
+      <div class="col-md-4">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-4 col-md-4">
+        <h3>Ingredientes:</h3>
+        <p><%= @recipe.ingredients %></p>
+      </div>
+      <div class="col-md-4">
+        <h3>Como Preparar:</h3>
+        <p><%= @recipe.method %></p>
+      </div>
+    </div>
+    <div class="text-center">
+      <%= link_to 'Voltar', root_path %>
+    </div>
+  </div>
+</div>
 
-<h3>Como Preparar</h3>
-<p><%= @recipe.method %></p>
-
-<%= link_to 'Voltar', root_path %>
+<%= render "home/footer" %>

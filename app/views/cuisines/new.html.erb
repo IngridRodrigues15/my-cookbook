@@ -1,3 +1,5 @@
+<%= render "home/header" %>
+
 <%= form_for @cuisine, url: {action: "create"} do |f| %>
   
   <% if @cuisine.errors.any? %>
@@ -11,3 +13,5 @@
 
   <%= f.submit "Enviar" %>
 <% end %>
+
+<%= render "home/footer" %>

@@ -1,36 +1,25 @@
-<h1>CookBook</h1>
-<p>Bem-vindo ao maior livro de receitas online</p>
+<%= render "header" %>
 
-<h3>Cozinha</h3>
-<aside>
-	<% @cuisines.each do |cuisine| %>
-		<li>
-			<%= link_to cuisine.name, cuisine_path(cuisine.id) %>
-		</li>
-	<% end %>
-</aside>
+<div class="container">
+  <div class="row">
+    <%= render "filter" %>
+    <div class="col-md-8 col-sm-12">
+      <section class="recipes-list">
+        <h2>Últimas receitas</h2>
+        <% @recipes.each do |recipe| %>
+          <h1>
+            <%= link_to recipe.title, recipe_path(recipe.id) %>
+          </h1>
+          <ul>
+            <li>Tipo: <%= recipe.recipe_type %></li>
+            <li>Cozinha: <%= recipe.cuisine %></li>
+            <li>Dificuldade: <%= recipe.difficulty %></li>
+            <li>Tempo de preparo: <%= recipe.cook_time %> minutos</li>
+          </ul>
+        <% end %>
+      </section>
+    </div>
+  </div>
+</div>
 
-<h3>Tipo da Receita</h3>
-<aside>
-	<% @recipe_types.each do |recipe_type| %>
-		<li>
-			<%= link_to recipe_type.name, recipe_type_path(recipe_type.id) %>
-		</li>
-	<% end %>
-</aside>
-
-<% @recipes.each do |recipe| %>
-	<h1>
-		<%= link_to recipe.title, recipe_path(recipe.id) %>
-	</h1>
-	<ul>
-		<li><%= recipe.recipe_type %></li>
-		<li><%= recipe.cuisine %></li>
-		<li><%= recipe.difficulty %></li>
-		<li><%= recipe.cook_time %> minutos</li>
-	</ul>
-<% end %>
-
-
-<%= link_to 'Enviar uma receita', new_recipe_path %>
-<%= link_to 'Cadastrar cozinha', new_cuisine_path %>
+<%= render "footer" %>

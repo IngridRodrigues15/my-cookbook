@@ -1,0 +1,20 @@
+
+<div class="col-md-4 col-sm-12">
+  <h3>Tipo</h3>
+  <aside>
+    <ul>
+      <% @recipe_types.each do |recipe_type| %>
+        <li><%= link_to recipe_type.name, recipe_type_path(recipe_type.id) %></li>
+      <% end %>
+    </ul>
+  </aside>
+
+  <h3>Cozinha</h3>
+  <aside>
+    <ul>
+      <% @cuisines.each do |cuisine| %>
+          <li><%= link_to cuisine.name, cuisine_path(cuisine.id) %></li>
+      <% end %>
+    </ul>
+  </aside>
+</div>
