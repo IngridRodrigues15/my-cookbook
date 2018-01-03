@@ -1,17 +1,23 @@
 <%= render "home/header" %>
 
-<%= form_for @recipe_type, url: {action: "create"} do |f| %>
-  
-  <% if @recipe_type.errors.any? %>
-    <% @recipe_type.errors.full_messages.each do |msg| %>
-      <p><%= msg %></p>
-    <% end %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <%= form_for @recipe_type, url: {action: "create"} do |f| %>
+        
+        <% if @recipe_type.errors.any? %>
+          <% @recipe_type.errors.full_messages.each do |msg| %>
+            <p><%= msg %></p>
+          <% end %>
+        <% end %>
 
-  <%= f.label :name, "Nome" %>
-  <%= f.text_field :name, :required => true %>
+        <%= f.label :name, "Nome" %>
+        <%= f.text_field :name, :required => true %>
 
-  <%= f.submit "Enviar" %>
-<% end %>
+        <%= f.submit "Enviar" %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
 <%= render "home/footer" %>

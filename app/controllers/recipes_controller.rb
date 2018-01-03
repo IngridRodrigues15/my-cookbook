@@ -10,11 +10,24 @@ class RecipesController < ApplicationController
   end
 
   def create
-    @recipe = Recipe.create(title: params[:recipe][:title], recipe_type_id: params[:recipe][:recipe_type_id], cuisine_id: params[:recipe][:cuisine_id], portion: params[:recipe][:portion], cook_time: params[:recipe][:cook_time], difficulty: params[:recipe][:difficulty], ingredients: params[:recipe][:ingredients], method: params[:recipe][:method])
+    @recipe = Recipe.create(recipe_params)
     if @recipe.save
       redirect_to recipe_path(@recipe.id)
     else
       render 'new' 
+    end
+  end
+
+  def edit
+    @recipe = Recipe.find(params[:id])
+  end
+
+  def update
+    @recipe = Recipe.find(params[:id])
+    if @recipe.update(recipe_params)
+      redirect_to recipe_path(@recipe.id)
+    else
+      render 'edit'
     end
   end
 
@@ -24,4 +37,9 @@ class RecipesController < ApplicationController
 
     redirect_to root_path
   end
+
+  private
+    def recipe_params
+      params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :portion, :cook_time, :difficulty, :ingredients, :method)
+    end
 end
