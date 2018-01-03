@@ -10,6 +10,15 @@
 	<% end %>
 </aside>
 
+<h3>Tipo da Receita</h3>
+<aside>
+	<% @recipe_types.each do |recipe_type| %>
+		<li>
+			<%= link_to recipe_type.name, recipe_type_path(recipe_type.id) %>
+		</li>
+	<% end %>
+</aside>
+
 <% @recipes.each do |recipe| %>
 	<h1>
 		<%= link_to recipe.title, recipe_path(recipe.id) %>
