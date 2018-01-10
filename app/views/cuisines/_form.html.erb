@@ -1,0 +1,9 @@
+<%= form_for @cuisine do |f| %>
+
+  <%= render partial: "shared/error", locals: {zone: @cuisine} %>
+
+  <%= f.label :name, "Nome" %>
+  <%= f.text_field :name, :required => true, class: "form-control" %>
+
+  <%= f.submit "Enviar" %>
+<% end %>

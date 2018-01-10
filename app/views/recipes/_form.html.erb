@@ -1,35 +1,47 @@
 <section class ="recipe-form">
   <%= form_for @recipe do |f| %>
 
-    <% if @recipe.errors.any? %>
-      <% @recipe.errors.full_messages.each do |msg| %>
-        <p><%= msg %></p>
-      <% end %>
-    <% end %>
+    <%= render partial: "shared/error", locals: {zone: @recipe} %>
 
-    <%= f.label :title, "Título" %>
-    <%= f.text_field :title, class: "form-control" %>
+    <div class="form-group">
+      <%= f.label :title, "Título" %>
+      <%= f.text_field :title, class: "form-control" %>
+    </div>
 
-    <%= f.label :recipe_type_id, "Tipo da Receita" %>
-    <%= f.collection_select(:recipe_type_id, RecipeType.all, :id, :name, {}, {class: "form-control"}) %>
+    <div class="form-group">
+      <%= f.label :recipe_type_id, "Tipo da Receita" %>
+      <%= f.collection_select(:recipe_type_id, RecipeType.all, :id, :name, {}, {class: "form-control"}) %>
+    </div>
 
-    <%= f.label :cuisine_id, "Cozinha" %>
-    <%= f.collection_select(:cuisine_id, Cuisine.all, :id, :name, {}, {class: "form-control"}) %>
+    <div class="form-group">
+      <%= f.label :cuisine_id, "Cozinha" %>
+      <%= f.collection_select(:cuisine_id, Cuisine.all, :id, :name, {}, {class: "form-control"}) %>
+    </div>
 
-    <%= f.label :portion, "Quantas pessoas serve" %>
-    <%= f.number_field :portion, class: "form-control" %>
+    <div class="form-group">
+      <%= f.label :portion, "Quantas pessoas serve" %>
+      <%= f.number_field :portion, class: "form-control" %>
+    </div>
 
-    <%= f.label :cook_time, "Tempo de Preparo" %>
-    <%= f.number_field :cook_time, :required => true, placeholder: "minutos", class: "form-control" %>
+    <div class="form-group">
+      <%= f.label :cook_time, "Tempo de Preparo" %>
+      <%= f.number_field :cook_time, :required => true, placeholder: "minutos", class: "form-control" %>
+    </div>
 
-    <%= f.label :difficulty, "Dificuldade" %>
-    <%= f.text_field :difficulty, :required => true, class: "form-control" %>
+    <div class="form-group">
+      <%= f.label :difficulty, "Dificuldade" %>
+      <%= f.text_field :difficulty, :required => true, class: "form-control" %>
+    </div>
 
-    <%= f.label :ingredients, "Ingredientes" %>
-    <%= f.text_area :ingredients, :required => true, class: "form-control" %>
+    <div class="form-group">
+      <%= f.label :ingredients, "Ingredientes" %>
+      <%= f.text_area :ingredients, :required => true, class: "form-control" %>
+    </div>
 
-    <%= f.label :method, "Como Preparar" %>
-    <%= f.text_area :method, :required => true, class: "form-control" %>
+    <div class="form-group">
+      <%= f.label :method, "Como Preparar" %>
+      <%= f.text_area :method, :required => true, class: "form-control" %>
+    </div>
 
     <%= f.submit "Enviar" %>
   <% end %>

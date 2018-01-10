@@ -1,8 +1,8 @@
-<%= render "home/header" %>
+<%= render "shared/header" %>
 
 <div class="container">
   <div class="row">
-    <%= render "home/filter" %>
+    <%= render "shared/filter" %>
       <div class="col-md-8 col-sm-12 recipes-list">
         <h1>Receitas filtradas por cozinha: <%= @cuisine.name %></h1>
 
@@ -22,4 +22,4 @@
     </div>
   </div>
 </div>
-<%= render "home/footer" %>
+<%= render "shared/footer" %>

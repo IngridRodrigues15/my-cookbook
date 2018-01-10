@@ -1,17 +1,11 @@
-<%= render "home/header" %>
+<%= render "shared/header" %>
 
-<%= form_for @cuisine, url: {action: "create"} do |f| %>
-  
-  <% if @cuisine.errors.any? %>
-    <% @cuisine.errors.full_messages.each do |msg| %>
-      <p><%= msg %></p>
-    <% end %>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+        <%= render 'form' %>
+    </div>
+  </div>
+</div>
 
-  <%= f.label :name, "Nome" %>
-  <%= f.text_field :name, :required => true %>
-
-  <%= f.submit "Enviar" %>
-<% end %>
-
-<%= render "home/footer" %>
+<%= render "shared/footer" %>
