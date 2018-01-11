@@ -1,9 +1,10 @@
 class CuisinesController < ApplicationController
+  before_action :set_cusines, only: [:show]
+  before_action :set_recipe_types, only: [:show] 
+
   def show
     @cuisine = Cuisine.find(params[:id])
     @recipes = Recipe.where(cuisine_id: params[:id])
-    @recipe_types = RecipeType.all
-    @cuisines = Cuisine.all
   end
 
   def new

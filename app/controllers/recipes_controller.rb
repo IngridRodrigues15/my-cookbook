@@ -1,8 +1,9 @@
 class RecipesController < ApplicationController
+  before_action :set_cusines, only: [:show, :new, :edit]
+  before_action :set_recipe_types, only: [:show, :new, :edit]
+
   def show
     @recipe = Recipe.find(params[:id])
-    @recipe_types = RecipeType.all
-    @cuisines = Cuisine.all
   end
 
   def new
@@ -14,6 +15,8 @@ class RecipesController < ApplicationController
     if @recipe.save
       redirect_to recipe_path(@recipe.id)
     else
+      set_cusines
+      set_recipe_types
       render 'new' 
     end
   end
@@ -27,6 +30,8 @@ class RecipesController < ApplicationController
     if @recipe.update(recipe_params)
       redirect_to recipe_path(@recipe.id)
     else
+      set_cusines
+      set_recipe_types
       render 'edit'
     end
   end

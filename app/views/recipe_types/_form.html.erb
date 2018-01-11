@@ -1,10 +1,6 @@
 <%= form_for @recipe_type do |f| %>
 
-  <% if @recipe_type.errors.any? %>
-    <% @recipe_type.errors.full_messages.each do |msg| %>
-      <p><%= msg %></p>
-    <% end %>
-  <% end %>
+  <%= render partial: "shared/error", locals: {zone: @recipe_type} %>
 
   <%= f.label :name, "Nome" %>
   <%= f.text_field :name, :required => true %>
