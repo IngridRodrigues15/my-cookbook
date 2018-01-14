@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'Visitor register recipe' do
   scenario 'successfully' do
+    user = User.create(email: 'ingrid@gmail.com', password: '123456')
+    login_as(user, :scope => :user)
+
     #cria os dados necessários
     Cuisine.create(name: 'Arabe')
     RecipeType.create(name: 'Entrada')
@@ -34,6 +37,9 @@ feature 'Visitor register recipe' do
   end
 
   scenario 'and must fill in all fields' do
+    user = User.create(email: 'ingrid@gmail.com', password: '123456')
+    login_as(user, :scope => :user)
+    
     #cria os dados necessários, nesse caso não vamos criar dados no banco
     Cuisine.create(name: 'Arabe')
     # simula a ação do usuário

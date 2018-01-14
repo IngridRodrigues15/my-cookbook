@@ -2,6 +2,9 @@ require 'rails_helper'
 
 feature 'User update recipe' do
   scenario 'successfully' do
+    user = User.create(email: 'ingrid@gmail.com', password: '123456')
+    login_as(user, :scope => :user)
+
     #cria os dados necessários
     arabian_cuisine = Cuisine.create(name: 'Arabe')
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
@@ -42,6 +45,9 @@ feature 'User update recipe' do
   end
 
   scenario 'and all fields must be filled' do
+    user = User.create(email: 'ingrid@gmail.com', password: '123456')
+    login_as(user, :scope => :user)
+    
     #cria os dados necessários, nesse caso não vamos criar dados no banco
     arabian_cuisine = Cuisine.create(name: 'Arabe')
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')

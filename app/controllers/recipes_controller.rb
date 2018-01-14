@@ -1,6 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_cusines, only: [:show, :new, :edit]
   before_action :set_recipe_types, only: [:show, :new, :edit]
+  before_action :authenticate_user!, only: [:new, :edit]
 
   def show
     @recipe = Recipe.find(params[:id])
@@ -17,7 +18,7 @@ class RecipesController < ApplicationController
     else
       set_cusines
       set_recipe_types
-      render 'new' 
+      render 'new'
     end
   end
 
