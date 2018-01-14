@@ -30,6 +30,8 @@
     <div class="text-center">
       <%= link_to 'Editar', edit_recipe_path(@recipe.id) %>
       <%= link_to 'Voltar', root_path %>
+
+      <%= link_to 'Excluir Receita', recipe_path(@recipe.id), method: :delete %>
     </div>
   </div>
 </div>

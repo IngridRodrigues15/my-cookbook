@@ -38,7 +38,8 @@ class RecipesController < ApplicationController
 
   def search
     @search_term = params[:q]
-    @recipes = Recipe.where(title: @search_term)
+    search_term_query = "%#{@search_term}%"
+    @recipes = Recipe.where("title LIKE ?", search_term_query)
   end
 
   def destroy

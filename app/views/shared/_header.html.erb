@@ -8,7 +8,7 @@
 
       <div class="col-md-5">
         <section class="search-container">
-          <%= form_tag("/search", method: "get") do %>
+          <%= form_tag(search_recipes_path, method: "get") do %>
             <%= label_tag(:q, "Busca:") %>
             <%= text_field_tag(:q) %>
             <%= submit_tag("Buscar") %>
