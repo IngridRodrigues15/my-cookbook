@@ -1,5 +1,5 @@
 <%= render "shared/header" %>
-
+<%= flash[:notice] %>
 <div class="container">
   <div class="row">
     <%= render "shared/filter" %>
@@ -32,6 +32,7 @@
       <%= link_to 'Voltar', root_path %>
 
       <% if user_signed_in? %>
+        <%= link_to 'Marcar como favorito', favorites_path(recipe: @recipe.id), method: :post %>
         <% if current_user == @recipe.author %>
           <%= link_to 'Editar', edit_recipe_path(@recipe.id) %>
           <%= link_to 'Excluir Receita', recipe_path(@recipe.id), method: :delete %>
