@@ -4,6 +4,8 @@ feature 'User delete recipe' do
   scenario 'successfully' do
     #cria os dados necessários
     user = User.create(email: 'ingrid@gmail.com', password: '123456')
+    login_as(user, :scope => :user)
+    
     italian_cuisine = Cuisine.create(name: 'Italiana')
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
 

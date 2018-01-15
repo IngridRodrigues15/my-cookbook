@@ -43,41 +43,4 @@ feature 'User authenticate' do
 
     expect(page).to have_content('Criar receita')
   end
-   scenario 'User must be authenticate to edit a recipe ' do
-     #cria os dados necessários
-     user = User.create(email: 'ingrid@gmail.com', password: '123456')
-     cuisine = Cuisine.create(name: 'Brasileira')
-     recipe_type = RecipeType.create(name: 'Sobremesa')
-     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                           cuisine: cuisine, author: user, difficulty: 'Médio', cook_time: 60,
-                           ingredients: 'Farinha, açucar, cenoura',
-                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
-
-     # simula a ação do usuário
-     visit root_path
-     click_on recipe.title
-     click_on 'Editar'
-
-     expect(page).to have_content('You need to sign in or sign up before continuing')
-     expect(page).not_to have_content('Editar receita')
-  end
-  scenario 'User authenticate can edit a recipe ' do
-    user = User.create(email: 'ingrid@gmail.com', password: '123456')
-    login_as(user, :scope => :user)
-
-    cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user, difficulty: 'Médio', cook_time: 60,
-                          ingredients: 'Farinha, açucar, cenoura',
-                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
-
-
-    # simula a ação do usuário
-    visit root_path
-    click_on recipe.title
-    click_on 'Editar'
-
-    expect(page).to have_content('Editar receita')
-  end
 end

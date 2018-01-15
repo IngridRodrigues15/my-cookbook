@@ -77,4 +77,63 @@ feature 'User update recipe' do
 
     expect(page).to have_content('Você deve informar todos os dados da receita')
   end
+  scenario 'user can not edit a recipe if is not the author by edit link' do
+    user = User.create(email: 'ingrid@gmail.com', password: '123456')
+    login_as(user, :scope => :user)
+
+    #cria os dados necessários
+    author = User.create(email: 'ana.maria.braga@gmail.com', password: '123456')
+    cuisine = Cuisine.create(name: 'Brasileira')
+    recipe_type = RecipeType.create(name: 'Sobremesa')
+
+    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
+                          cuisine: cuisine, author: author, difficulty: 'Médio',
+                          cook_time: 50,
+                          ingredients: 'Farinha, açucar, cenoura',
+                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+
+    # simula a ação do usuário
+    visit root_path
+    click_on recipe.title
+
+    expect(page).not_to have_link('Editar')
+  end
+  scenario 'not authenticate user can not click on edit recipe link' do
+    #cria os dados necessários
+    author = User.create(email: 'ana.maria.braga@gmail.com', password: '123456')
+    cuisine = Cuisine.create(name: 'Brasileira')
+    recipe_type = RecipeType.create(name: 'Sobremesa')
+
+    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
+                          cuisine: cuisine, author: author, difficulty: 'Médio',
+                          cook_time: 50,
+                          ingredients: 'Farinha, açucar, cenoura',
+                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+
+    # simula a ação do usuário
+    visit root_path
+    click_on recipe.title
+
+    expect(page).not_to have_link('Editar')
+  end
+  scenario 'user can not edit a recipe if is not the author by edit path' do
+    user = User.create(email: 'ingrid@gmail.com', password: '123456')
+    login_as(user, :scope => :user)
+
+    #cria os dados necessários
+    author = User.create(email: 'ana.maria.braga@gmail.com', password: '123456')
+    cuisine = Cuisine.create(name: 'Brasileira')
+    recipe_type = RecipeType.create(name: 'Sobremesa')
+
+    recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
+                          cuisine: cuisine, author: author, difficulty: 'Médio',
+                          cook_time: 50,
+                          ingredients: 'Farinha, açucar, cenoura',
+                          method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
+
+    # simula a ação do usuário
+    visit edit_recipe_path(recipe)
+
+    expect(current_path).to eq(root_path)
+  end
 end
