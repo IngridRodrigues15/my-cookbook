@@ -64,4 +64,60 @@ feature 'Visitor visit homepage' do
     expect(page).to have_css('li', text: another_recipe.difficulty)
     expect(page).to have_css('li', text: "#{another_recipe.cook_time} minutos")
   end
+  scenario 'and view last 6 recipes' do
+    #cria os dados necessários
+    user = User.create(email: 'ingrid@gmail.com', password: '123456')
+    cuisine = Cuisine.create(name: 'Brasileira')
+    recipe_type = RecipeType.create(name: 'Sobremesa')
+    first_recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user, difficulty: 'Médio',
+                          ingredients: 'Cenoura, acucar, oleo e chocolate',
+                          method: 'Misturar tudo, bater e assar',
+                          cook_time: 60)
+
+    second_recipe = Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user, difficulty: 'Médio',
+                          ingredients: 'Cenoura, acucar, oleo e chocolate',
+                          method: 'Misturar tudo, bater e assar',
+                          cook_time: 60)
+    third_recipe = Recipe.create(title: 'Bolo de brigadeiro', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user, difficulty: 'Médio',
+                          ingredients: 'Cenoura, acucar, oleo e chocolate',
+                          method: 'Misturar tudo, bater e assar',
+                          cook_time: 60)
+    fourth_recipe = Recipe.create(title: 'Bolo de fubá', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user, difficulty: 'Médio',
+                          ingredients: 'Cenoura, acucar, oleo e chocolate',
+                          method: 'Misturar tudo, bater e assar',
+                          cook_time: 60)
+    fifth_recipe = Recipe.create(title: 'Bolo de leite', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user, difficulty: 'Médio',
+                          ingredients: 'Cenoura, acucar, oleo e chocolate',
+                          method: 'Misturar tudo, bater e assar',
+                          cook_time: 60)
+    sixth_recipe = Recipe.create(title: 'Bolo de morango', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user, difficulty: 'Médio',
+                          ingredients: 'Cenoura, acucar, oleo e chocolate',
+                          method: 'Misturar tudo, bater e assar',
+                          cook_time: 60)
+    seventh_recipe = Recipe.create(title: 'Bolo de amora', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user, difficulty: 'Médio',
+                          ingredients: 'Cenoura, acucar, oleo e chocolate',
+                          method: 'Misturar tudo, bater e assar',
+                          cook_time: 60)
+
+    # simula a ação do usuário
+    visit root_path
+
+    # expectativas do usuário após a ação
+    expect(page).to have_link('Ver todas as receitas')
+    expect(page).not_to have_css('h1', text: first_recipe.title)
+    expect(page).to have_css('h1', text: second_recipe.title)
+    expect(page).to have_css('h1', text: third_recipe.title)
+    expect(page).to have_css('h1', text: fourth_recipe.title)
+    expect(page).to have_css('h1', text: fifth_recipe.title)
+    expect(page).to have_css('h1', text: sixth_recipe.title)
+    expect(page).to have_css('h1', text: seventh_recipe.title)
+  end
+  #link ver todas
 end
