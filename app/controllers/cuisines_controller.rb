@@ -1,6 +1,6 @@
 class CuisinesController < ApplicationController
   before_action :set_cusines, only: [:show]
-  before_action :set_recipe_types, only: [:show] 
+  before_action :set_recipe_types, only: [:show]
 
   def show
     @cuisine = Cuisine.find(params[:id])
@@ -12,7 +12,7 @@ class CuisinesController < ApplicationController
   end
 
   def create
-    @cuisine = Cuisine.create(cuisine_params)
+    @cuisine = Cuisine.new(cuisine_params)
     if @cuisine.save
       redirect_to cuisine_path(@cuisine.id)
     else

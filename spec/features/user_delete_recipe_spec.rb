@@ -3,6 +3,7 @@ require 'rails_helper'
 feature 'User delete recipe' do
   scenario 'successfully' do
     #cria os dados necessários
+    user = User.create(email: 'ingrid@gmail.com', password: '123456')
     italian_cuisine = Cuisine.create(name: 'Italiana')
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
 
@@ -10,13 +11,13 @@ feature 'User delete recipe' do
     dessert_type = RecipeType.create(name: 'Sobremesa')
 
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: dessert_type,
-                          cuisine: brazilian_cuisine, difficulty: 'Médio',
+                          cuisine: brazilian_cuisine, author: user, difficulty: 'Médio',
                           cook_time: 50,
                           ingredients: 'Farinha, açucar, cenoura',
                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
 
     another_recipe = Recipe.create(title: 'Lasanha', recipe_type: main_type,
-                          cuisine: italian_cuisine, difficulty: 'Médio',
+                          cuisine: italian_cuisine, author: user, difficulty: 'Médio',
                           cook_time: 50,
                           ingredients: 'Massa, queijo e presunto',
                           method: 'Coloque os ingredientes em camadas')

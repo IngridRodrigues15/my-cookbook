@@ -12,7 +12,7 @@ class RecipeTypesController < ApplicationController
   end
 
   def create
-    @recipe_type = RecipeType.create(recipe_type_params)
+    @recipe_type = RecipeType.new(recipe_type_params)
     if @recipe_type.save
       redirect_to recipe_type_path(@recipe_type.id)
     else

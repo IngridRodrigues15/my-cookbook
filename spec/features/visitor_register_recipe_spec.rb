@@ -34,12 +34,13 @@ feature 'Visitor register recipe' do
     expect(page).to have_css('p', text: 'Trigo para quibe, cebola, tomate picado, azeite, salsinha')
     expect(page).to have_css('h3', text: 'Como Preparar')
     expect(page).to have_css('p', text:  'Misturar tudo e servir. Adicione limão a gosto.')
+    expect(page).to have_css('p', text: "Enviado por: #{user.email}")
   end
 
   scenario 'and must fill in all fields' do
     user = User.create(email: 'ingrid@gmail.com', password: '123456')
     login_as(user, :scope => :user)
-    
+
     #cria os dados necessários, nesse caso não vamos criar dados no banco
     Cuisine.create(name: 'Arabe')
     # simula a ação do usuário

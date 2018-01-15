@@ -26,6 +26,7 @@
         <h3>Como Preparar:</h3>
         <p><%= @recipe.method %></p>
       </div>
+      <p>Enviado por: <%= @recipe.author.email %></p>
     </div>
     <div class="text-center">
       <%= link_to 'Editar', edit_recipe_path(@recipe.id) %>

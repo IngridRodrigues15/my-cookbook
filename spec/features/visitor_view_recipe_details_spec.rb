@@ -3,10 +3,12 @@ require 'rails_helper'
 feature 'Visitor view recipe details' do
   scenario 'successfully' do
     #cria os dados necessários
+    user = User.create(email: 'ingrid@gmail.com', password: '123456')
+
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, difficulty: 'Médio', cook_time: 60,
+                          cuisine: cuisine, author: user, difficulty: 'Médio', cook_time: 60,
                           ingredients: 'Farinha, açucar, cenoura',
                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
 
@@ -25,14 +27,16 @@ feature 'Visitor view recipe details' do
     expect(page).to have_css('p', text: recipe.ingredients)
     expect(page).to have_css('h3', text: 'Como Preparar')
     expect(page).to have_css('p', text: recipe.method)
+    expect(page).to have_css('p', text: "Enviado por: #{user.email}")
   end
 
   scenario 'and return to recipe list' do
     #cria os dados necessários
+    user = User.create(email: 'ingrid@gmail.com', password: '123456')
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type:  recipe_type,
-                          cuisine: cuisine, difficulty: 'Médio',
+                          cuisine: cuisine, author: user, difficulty: 'Médio',
                           cook_time: 60,
                           ingredients: 'Farinha, açucar, cenoura',
                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')

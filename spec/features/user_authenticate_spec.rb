@@ -45,10 +45,11 @@ feature 'User authenticate' do
   end
    scenario 'User must be authenticate to edit a recipe ' do
      #cria os dados necessários
+     user = User.create(email: 'ingrid@gmail.com', password: '123456')
      cuisine = Cuisine.create(name: 'Brasileira')
      recipe_type = RecipeType.create(name: 'Sobremesa')
      recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                           cuisine: cuisine, difficulty: 'Médio', cook_time: 60,
+                           cuisine: cuisine, author: user, difficulty: 'Médio', cook_time: 60,
                            ingredients: 'Farinha, açucar, cenoura',
                            method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
 
@@ -67,7 +68,7 @@ feature 'User authenticate' do
     cuisine = Cuisine.create(name: 'Brasileira')
     recipe_type = RecipeType.create(name: 'Sobremesa')
     recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, difficulty: 'Médio', cook_time: 60,
+                          cuisine: cuisine, author: user, difficulty: 'Médio', cook_time: 60,
                           ingredients: 'Farinha, açucar, cenoura',
                           method: 'Cozinhe a cenoura, corte em pedaços pequenos, misture com o restante dos ingredientes')
 
