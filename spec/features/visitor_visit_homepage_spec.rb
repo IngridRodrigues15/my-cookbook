@@ -66,11 +66,11 @@ feature 'Visitor visit homepage' do
   end
   scenario 'and view last 6 recipes' do
     #cria os dados necessários
-    user = create(:user, eamil: 'ana.maria.braga@gmail.com')
+    user = create(:user, email: 'ana.maria.braga@gmail.com')
     cuisine = create(:cuisine)
     recipe_type = create(:recipe_type)
-    #first_recipe = create(:recipe, title:'Bolo de cenoura', recipe_type: recipe_type,
-                #          cuisine: cuisine, author: user )
+    first_recipe = create(:recipe, title:'Bolo de cenoura', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user )
 
 
     second_recipe = Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
