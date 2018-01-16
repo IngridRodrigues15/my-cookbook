@@ -7,15 +7,7 @@
       <section class="recipes-list">
         <h2>Últimas receitas</h2>
         <% @recipes.each do |recipe| %>
-          <h1>
-            <%= link_to recipe.title, recipe_path(recipe.id) %>
-          </h1>
-          <ul>
-            <li>Tipo: <%= recipe.recipe_type %></li>
-            <li>Cozinha: <%= recipe.cuisine %></li>
-            <li>Dificuldade: <%= recipe.difficulty %></li>
-            <li>Tempo de preparo: <%= recipe.cook_time %> minutos</li>
-          </ul>
+          <%= render recipe %>
         <% end %>
         <%= link_to 'Ver todas as receitas', root_path %>
       </section>

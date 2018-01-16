@@ -1,0 +1,9 @@
+<h1>
+  <%= link_to recipe.title, recipe_path(recipe.id) %>
+</h1>
+<ul>
+  <li>Tipo: <%= recipe.recipe_type %></li>
+  <li>Cozinha: <%= recipe.cuisine %></li>
+  <li>Dificuldade: <%= recipe.difficulty %></li>
+  <li>Tempo de preparo: <%= recipe.cook_time %> minutos</li>
+</ul>

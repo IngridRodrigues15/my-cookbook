@@ -66,14 +66,12 @@ feature 'Visitor visit homepage' do
   end
   scenario 'and view last 6 recipes' do
     #cria os dados necessários
-    user = User.create(email: 'ingrid@gmail.com', password: '123456')
-    cuisine = Cuisine.create(name: 'Brasileira')
-    recipe_type = RecipeType.create(name: 'Sobremesa')
-    first_recipe = Recipe.create(title: 'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user, difficulty: 'Médio',
-                          ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60)
+    user = create(:user, eamil: 'ana.maria.braga@gmail.com')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+    #first_recipe = create(:recipe, title:'Bolo de cenoura', recipe_type: recipe_type,
+                #          cuisine: cuisine, author: user )
+
 
     second_recipe = Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
                           cuisine: cuisine, author: user, difficulty: 'Médio',
@@ -119,5 +117,7 @@ feature 'Visitor visit homepage' do
     expect(page).to have_css('h1', text: sixth_recipe.title)
     expect(page).to have_css('h1', text: seventh_recipe.title)
   end
+  scenario 'and user see all recipes' do
   #link ver todas
+  end
 end
