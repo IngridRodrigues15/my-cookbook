@@ -69,40 +69,21 @@ feature 'Visitor visit homepage' do
     user = create(:user, email: 'ana.maria.braga@gmail.com')
     cuisine = create(:cuisine)
     recipe_type = create(:recipe_type)
+    
     first_recipe = create(:recipe, title:'Bolo de cenoura', recipe_type: recipe_type,
                           cuisine: cuisine, author: user )
-
-
-    second_recipe = Recipe.create(title: 'Bolo de chocolate', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user, difficulty: 'Médio',
-                          ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60)
-    third_recipe = Recipe.create(title: 'Bolo de brigadeiro', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user, difficulty: 'Médio',
-                          ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60)
-    fourth_recipe = Recipe.create(title: 'Bolo de fubá', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user, difficulty: 'Médio',
-                          ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60)
-    fifth_recipe = Recipe.create(title: 'Bolo de leite', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user, difficulty: 'Médio',
-                          ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60)
-    sixth_recipe = Recipe.create(title: 'Bolo de morango', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user, difficulty: 'Médio',
-                          ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60)
-    seventh_recipe = Recipe.create(title: 'Bolo de amora', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user, difficulty: 'Médio',
-                          ingredients: 'Cenoura, acucar, oleo e chocolate',
-                          method: 'Misturar tudo, bater e assar',
-                          cook_time: 60)
+    second_recipe = create(:recipe, title:'Bolo de chocolate', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user )
+    third_recipe = create(:recipe, title:'Bolo de brigadeiro', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user )
+    fourth_recipe = create(:recipe, title:'Bolo de fubá', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user )
+    fifth_recipe = create(:recipe, title:'Bolo de leite', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user )
+    sixth_recipe = create(:recipe, title:'Bolo de morango', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user )
+    seventh_recipe = create(:recipe, title:'Bolo de amora', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user )
 
     # simula a ação do usuário
     visit root_path

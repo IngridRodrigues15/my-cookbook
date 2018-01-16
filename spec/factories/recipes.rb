@@ -7,6 +7,6 @@ FactoryBot.define do
     cook_time 60
     recipe_type
     cuisine
-    author
+    association :author, factory: :user
   end
 end
