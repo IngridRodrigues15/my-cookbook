@@ -11,6 +11,10 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new
   end
 
+  def index
+    @recipes = Recipe.all
+  end
+
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.author = current_user

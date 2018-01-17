@@ -103,31 +103,12 @@ feature 'Visitor visit homepage' do
     user = create(:user, email: 'ana.maria.braga@gmail.com')
     cuisine = create(:cuisine)
     recipe_type = create(:recipe_type)
-
-    first_recipe = create(:recipe, title:'Bolo de cenoura', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user )
-    second_recipe = create(:recipe, title:'Bolo de chocolate', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user )
-    third_recipe = create(:recipe, title:'Bolo de brigadeiro', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user )
-    fourth_recipe = create(:recipe, title:'Bolo de fubá', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user )
-    fifth_recipe = create(:recipe, title:'Bolo de leite', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user )
-    sixth_recipe = create(:recipe, title:'Bolo de morango', recipe_type: recipe_type,
-                          cuisine: cuisine, author: user )
-    seventh_recipe = create(:recipe, title:'Bolo de amora', recipe_type: recipe_type,
+    create_list(:recipe,10,recipe_type: recipe_type,
                           cuisine: cuisine, author: user )
 
     visit root_path
     click_on 'Ver todas as receitas'
 
-    expect(page).to have_css('h1', text: first_recipe.title)
-    expect(page).to have_css('h1', text: second_recipe.title)
-    expect(page).to have_css('h1', text: third_recipe.title)
-    expect(page).to have_css('h1', text: fourth_recipe.title)
-    expect(page).to have_css('h1', text: fifth_recipe.title)
-    expect(page).to have_css('h1', text: sixth_recipe.title)
-    expect(page).to have_css('h1', text: seventh_recipe.title)
+    expect(page).to have_selector('h1.recipe_title', count: 10)
   end
 end
