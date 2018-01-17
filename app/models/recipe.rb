@@ -8,4 +8,8 @@ class Recipe < ApplicationRecord
 
   alias_attribute :author, :user
   validates :title, :recipe_type, :cuisine, :difficulty, :cook_time, :ingredients, presence: { message: "Você deve informar todos os dados da receita" }
+
+  def is_author?(user)
+    self.author.eql?(user)
+  end
 end

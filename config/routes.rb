@@ -9,7 +9,7 @@ Rails.application.routes.draw do
       get 'search'
     end
   end
-  resources :favorites, only: [:index, :create]
+  resources :favorites, only: [:index, :create, :destroy]
   resources :cuisines, only: [:show, :new, :create]
   resources :recipe_types, only: [:show, :new, :create]
 end

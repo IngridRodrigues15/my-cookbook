@@ -22,6 +22,7 @@ feature 'User favorite recipe' do
     click_on 'Marcar como favorito'
 
     expect(page).to have_content('Receita adiciona aos favoritos')
+    expect(page).to have_link('Remover dos favoritos')
   end
   scenario 'and see favorites list' do
     user = User.create(email: 'ingrid@gmail.com', password: '123456')
@@ -59,6 +60,25 @@ feature 'User favorite recipe' do
     expect(page).to have_link(recipe.title)
     expect(page).to have_link(another_recipe.title)
     expect(page).not_to have_link(third_recipe.title)
+  end
+  scenario 'and remove a favorites' do
+    #cria os dados necessários
+    user = create(:user, email: 'ana.maria.braga@gmail.com')
+    cuisine = create(:cuisine)
+    recipe_type = create(:recipe_type)
+
+    recipe = create(:recipe, title:'Bolo de cenoura', recipe_type: recipe_type,
+                          cuisine: cuisine, author: user )
+    create(:favorite, recipe: recipe, user: user)
+
+    login_as(user)
+    visit root_path
+    click_on recipe.title
+    click_on 'Remover dos favoritos'
+
+    expect(page).to have_link('Marcar como favorito')
+    expect(page).to have_content('Receita removida aos favoritos')
+    expect(page).not_to have_link('Remover dos favoritos')
   end
 
 #user must be authenticate to favorite a receipe

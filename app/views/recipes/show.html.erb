@@ -32,8 +32,12 @@
       <%= link_to 'Voltar', root_path %>
 
       <% if user_signed_in? %>
-        <%= link_to 'Marcar como favorito', favorites_path(recipe: @recipe.id), method: :post %>
-        <% if current_user == @recipe.author %>
+        <% if current_user.favorited?(@recipe) %>
+          <%= link_to 'Remover dos favoritos', favorite_path(recipe: @recipe.id), method: :delete %>
+        <% else %>
+          <%= link_to 'Marcar como favorito', favorites_path(recipe: @recipe.id), method: :post %>
+        <% end %>
+        <% if @recipe.is_author? current_user %>
           <%= link_to 'Editar', edit_recipe_path(@recipe.id) %>
           <%= link_to 'Excluir Receita', recipe_path(@recipe.id), method: :delete %>
         <% end %>
