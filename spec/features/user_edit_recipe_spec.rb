@@ -79,7 +79,7 @@ feature 'User update recipe' do
   end
   scenario 'user can not edit a recipe if is not the author by edit link' do
     user = User.create(email: 'ingrid@gmail.com', password: '123456')
-    login_as(user, :scope => :user)
+    login_as(user)
 
     #cria os dados necessários
     author = User.create(email: 'ana.maria.braga@gmail.com', password: '123456')

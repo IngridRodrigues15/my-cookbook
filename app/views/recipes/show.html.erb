@@ -46,4 +46,13 @@
   </div>
 </div>
 
+<h5>Enviar receita para um amigo</h5>
+<%= form_tag(share_recipe_path, method: :post) do %>
+  <%= label_tag(:email, 'Email') %>
+  <%= text_field_tag(:email) %>
+  <%= label_tag(:message, 'Mensagem') %>
+  <%= text_area_tag(:message) %>
+  <%= submit_tag('Enviar') %>
+<% end %>
+
 <%= render "shared/footer" %>

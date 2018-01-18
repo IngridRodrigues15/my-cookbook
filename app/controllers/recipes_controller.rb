@@ -55,6 +55,16 @@ class RecipesController < ApplicationController
     redirect_to root_path
   end
 
+  def share
+    @recipe = Recipe.find(params[:id])
+    email = params[:email]
+    message = params[:message]
+
+    RecipesMailer.share(email, message, @recipe.id).deliver_now
+    flash[:notice] =  "#{@recipe.title} enviada para #{email}"
+    redirect_to @recipe
+  end
+
   private
     def recipe_params
       params.require(:recipe).permit(:title, :recipe_type_id, :cuisine_id, :portion, :cook_time, :difficulty, :ingredients, :method)

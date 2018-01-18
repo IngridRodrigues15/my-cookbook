@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   root to: 'home#index'
   resources :recipes do
     member do
-      #post 'favorite'
+      post 'share'
     end
     collection do
       get 'search'

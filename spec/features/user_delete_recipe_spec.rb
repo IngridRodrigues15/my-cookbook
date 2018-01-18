@@ -5,7 +5,7 @@ feature 'User delete recipe' do
     #cria os dados necessários
     user = User.create(email: 'ingrid@gmail.com', password: '123456')
     login_as(user, :scope => :user)
-    
+
     italian_cuisine = Cuisine.create(name: 'Italiana')
     brazilian_cuisine = Cuisine.create(name: 'Brasileira')
 
@@ -34,5 +34,17 @@ feature 'User delete recipe' do
     expect(page).not_to have_link(recipe.title)
     expect(page).to have_css('h1', text: another_recipe.title)
     expect(page).to have_link(another_recipe.title)
+  end
+  scenario 'and only the author can delete' do
+    user = create :user, email: 'ingrid@teste.com'
+    author = create :user, email: 'ana.maria.braga@gmail.com'
+    recipe = create :recipe, author: author
+
+    # simula a ação do usuário
+    login_as user
+    visit root_path
+    click_on recipe.title
+
+    expect(page).not_to have_link('Excluir Receita')
   end
 end
